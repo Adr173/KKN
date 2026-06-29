@@ -794,7 +794,6 @@ body {
   .hero-image img {
     position: relative;
     bottom: auto;
-    right: auto;
     height: auto;
     width: 90%;
     max-width: 380px;
