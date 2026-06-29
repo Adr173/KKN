@@ -245,7 +245,7 @@ body {
     position: relative;
     bottom: auto;
     right: auto;
-    height: auto;
+    height: 90px;
     width: 90%;
     max-width: 400px;
     margin: 0 auto;
