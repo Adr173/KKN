@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mengalihkan ke Drive Arsip KKN...</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: #f4f7fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+            padding: 20px;
+        }
+        .redirect-box {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+        }
+        .drive-logo {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+        .redirect-box h2 {
+            font-size: 20px;
+            color: #1a365d;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .redirect-box p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 25px;
+        }
+        /* Animasi Loading Spinner */
+        .spinner {
+            width: 45px;
+            height: 45px;
+            border: 4px solid #e2e8f0;
+            border-top: 4px solid #3182ce;
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .btn-manual {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3182ce;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        .btn-manual:hover {
+            background-color: #2b6cb0;
+        }
+    </style>
+
+
+
+
+
+</head>
+<body>
+
+<div class="redirect-box">
+    <div class="drive-logo">🤖📁</div>
+    <div class="spinner"></div>
+    <h2>Menghubungkan ke Google Drive</h2>
+    <p>Mohon tunggu sejenak, sistem sedang mengalihkan Anda ke berkas arsip & dokumen KKN...</p>
+    
+    <a href="#" id="linkDrive" class="btn-manual">Klik Disini Jika Tidak Berpindah</a>
+</div>
+
+<script>
+    // 🔗 KUNCI UTAMA: Ganti dengan URL link share folder Google Drive KKN Anda
+    const GOOGLE_DRIVE_URL = "https://drive.google.com/drive/folders/1evtVmOFmVyuvp5t5JBlbuxQ4JE5clQTT?usp=sharing";
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Pasang link ke tombol manual sebagai cadangan
+        const btnManual = document.getElementById("linkDrive");
+        if (btnManual) btnManual.href = GOOGLE_DRIVE_URL;
+
+        // Beri jeda 1.5 detik untuk animasi estetik sebelum otomatis melompat
+        setTimeout(function() {
+            window.location.href = GOOGLE_DRIVE_URL;
+        }, 1500);
+    });
+</script>
+</body>
+</html>

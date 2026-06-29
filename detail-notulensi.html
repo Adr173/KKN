@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Notulensi | Website KKN</title>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="detail-notulensi.css">
+</head>
+<body>
+
+<div class="container">
+
+
+<header class="header">
+        <div>
+            <span id="detStatus" class="status-badge">Loading...</span>
+            <h1 id="detJudul">Memuat Judul Rapat...</h1>
+            <p>Oleh Notulis: <strong id="detNotulis">-</strong> | Dicatat pada: <span id="detTimestamp">-</span></p>
+        </div>
+        <div class="header-buttons">
+            <a href="notulensi.html" class="btn-back">← Kembali</a>
+            <button id="btnDownloadWord" class="btn-word">📥 Download Word</button>
+            <button id="btnEdit" class="btn-edit">✏️ Edit Notulensi</button> 
+            <button id="btnHapus" style="background-color: #e53e3e; color: white; padding: 10px 20px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: 0.2s;" onmouseover="this.style.backgroundColor='#c53030'" onmouseout="this.style.backgroundColor='#e53e3e'">🗑️ Hapus</button>
+        </div>
+    </header>
+
+
+    <hr class="separator">
+
+    <!-- Grid Informasi Utama -->
+    <section class="meta-grid">
+        <div class="meta-box">
+            <h4>📅 Tanggal Pelaksanaan</h4>
+            <p id="detTanggal">-</p>
+        </div>
+        <div class="meta-box">
+            <h4>⏰ Waktu (Mulai - Selesai)</h4>
+            <p id="detWaktu">-</p>
+        </div>
+        <div class="meta-box">
+            <h4>📍 Tempat / Lokasi</h4>
+            <p id="detTempat">-</p>
+        </div>
+        <div class="meta-box">
+            <h4>👥 Jumlah Peserta</h4>
+            <p id="detPeserta">-</p>
+        </div>
+        <div class="meta-box">
+            <h4>📌 Jenis Kegiatan</h4>
+            <p id="detJenis">-</p>
+        </div>
+    </section>
+
+    <!-- Konten Isi Rapat -->
+    <section class="content-section">
+        <div class="content-box">
+            <h3>🎯 Agenda Rapat</h3>
+            <p id="detAgenda">-</p>
+        </div>
+
+        <div class="content-box">
+            <h3>📝 Pembahasan Utama</h3>
+            <p id="detPembahasan">-</p>
+        </div>
+
+        <div class="content-box">
+            <h3>💡 Keputusan Rapat</h3>
+            <p id="detKeputusan">-</p>
+        </div>
+
+        <div class="content-box">
+            <h3>🚀 Tindak Lanjut</h3>
+            <p id="detTindakLanjut">-</p>
+        </div>
+
+<div class="content-box">
+            <h3>🚀 Tindak Lanjut</h3>
+            <p id="detTindakLanjut">-</p>
+        </div>
+
+        <div class="content-box">
+            <h3>📸 Lampiran Foto Kegiatan</h3>
+            <div id="detLampiranContainer" style="text-align: center; margin-top: 15px;">
+                <p style="color: #999; font-style: italic;">⏳ Sedang memuat gambar...</p>
+            </div>
+        </div>
+
+    </section>
+</div>
+
+<script src="detail-notulensi.js"></script>
+</body>
+</html>

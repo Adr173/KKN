@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Kerja KKN PK-69</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================================================
+           RESET & VARIABEL WARNA SINKRON
+           ========================================================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        :root {
+            --primary-color: #4a1d1d; /* Cokelat/Merah tua mewah */
+            --secondary-color: #2d1010;
+            --accent-color: #fbd38d;  /* Emas soft */
+            --bg-color: #f8f9fa;
+            --card-color: #ffffff;
+            
+            /* Warna Status Badge */
+            --status-success: #38a169; /* Hijau */
+            --status-process: #3182ce; /* Biru */
+            --status-pending: #dd6b20; /* Oranye */
+        }
+        body {
+            background-color: var(--bg-color);
+            color: #2d3748;
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* =========================================================================
+           NAVIGASI BAR
+           ========================================================================= */
+        .navbar {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .navbar .brand { font-weight: 700; font-size: 16px; letter-spacing: 0.5px; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { color: #e2e8f0; text-decoration: none; font-size: 14px; font-weight: 500; }
+        .nav-links a.active { color: white; border-bottom: 2px solid var(--accent-color); }
+
+        /* =========================================================================
+           HEADER BANNER
+           ========================================================================= */
+        .header-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 40px;
+        }
+        .header-section h1 { font-size: 24px; font-weight: 600; margin-bottom: 5px; }
+        .header-section p { color: #cbd5e0; font-size: 13px; }
+
+        /* =========================================================================
+           LAYOUT GRID KARTU PROGRAM KERJA
+           ========================================================================= */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .proker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        /* Desain Kotak Kartu */
+        .proker-card {
+            background: var(--card-color);
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 24px;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .proker-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        }
+
+        /* Pengaturan Header Kartu & Warna Badge */
+        .proker-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+            gap: 10px;
+        }
+        .proker-card h3 {
+            font-size: 16px;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+        .status-badge {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 30px;
+            color: white;
+            white-space: nowrap;
+        }
+        /* Class Dinamis Warna Status */
+        .status-badge.terlaksana { background-color: var(--status-success); }
+        .status-badge.proses { background-color: var(--status-process); }
+        .status-badge.belum { background-color: var(--status-pending); }
+
+        /* Meta Informasi Singkat Kartu */
+        .proker-meta {
+            font-size: 12.5px;
+            color: #718096;
+            margin-bottom: 15px;
+        }
+        .proker-meta p {
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Tombol Klik Detail palsu di bawah kartu */
+        .btn-detail-palsu {
+            font-size: 13px;
+            color: var(--primary-color);
+            font-weight: 500;
+            text-align: right;
+        }
+
+        /* =========================================================================
+           🧩 JENDELA MODAL POP-UP (INTERAKTIF DETAIL PROKER)
+           ========================================================================= */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+        /* Muncul saat class 'active' dipanggil oleh JavaScript */
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-box {
+            background: white;
+            width: 90%;
+            max-width: 550px;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.25s ease;
+        }
+        .modal-overlay.active .modal-box {
+            transform: translateY(0);
+        }
+        .modal-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #edf2f7;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            color: #718096;
+        }
+        .modal-box h2 {
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-right: 25px;
+        }
+        .modal-detail-item {
+            font-size: 13.5px;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #edf2f7;
+            padding-bottom: 10px;
+        }
+        .modal-detail-item:last-child { border-bottom: none; }
+        .modal-detail-item strong {
+            display: block;
+            color: #4a5568;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+        .modal-detail-item p { color: #2d3748; }
+
+        /* Responsive HP */
+        @media (max-width: 600px) {
+            .proker-grid { grid-template-columns: 1fr; }
+            .modal-box { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="brand">👑 KKN DIGITAL ARCHIVE</div>
+    <div class="nav-links">
+        <a href="index.html">Beranda</a>
+        <a href="presensi.html">Presensi</a>
+        <a href="notulensi.html">Notulensi</a>
+        <a href="dokumen.html">Dokumen</a>
+        <a href="peraturan.html">Peraturan</a>
+        <a href="struktur.html">Struktur</a>
+    </div>
+</nav>
+
+<header class="header-section">
+    <h1>Program Kerja Pokok Posko</h1>
+    <p>Matriks program kerja interprofesi kesehatan Desa Tompo - Angkatan 69</p>
+</header>
+
+<main class="container">
+    <div class="proker-grid">
+        
+        <div class="proker-card" onclick="bukaModal('Pemeriksaan Kesehatan Gratis & Screening Penyakit Kronis', 'Menyelenggarakan posko screening tekanan darah, cek gula darah, serta kolesterol gratis untuk seluruh warga lansia di Dusun Tompo Utara.', 'Andira Maharani & Tim Medis', 'Minggu ke-2 (12 Juli 2026)', 'Terlaksana', 'Rp 1.250.000 (Kas Kelompok + Sponsor)', 'Minimal 80% lansia dusun hadir berpartisipasi')">
+            <div>
+                <div class="proker-card-header">
+                    <h3>Pemeriksaan Kesehatan & Screening Gratis</h3>
+                    <span class="status-badge terlaksana">Terlaksana</span>
+                </div>
+                <div class="proker-meta">
+                    <p>👤 <strong>PJ:</strong> Nama</p>
+                    <p>📅 <strong>Waktu:</strong> Minggu ke-2</p>
+                </div>
+            </div>
+            <div class="btn-detail-palsu">Lihat Detail Inti →</div>
+        </div>
+
+        <div class="proker-card" onclick="bukaModal('Sosialisasi PHBS & Penyuluhan Stunting Sejak Dini', 'Edukasi interaktif di SD Inpres mengenai Gerakan Cuci Tangan Pakai Sabun (CTPS) dan penyuluhan gizi seimbang untuk Ibu Hamil di Posyandu.', 'Siti Nurhaliza (Farmasi/Kesmas)', 'Minggu ke-3 (19 Juli 2026)', 'Dalam Proses', 'Rp 450.000 (Cetak Brosur & PMT)', 'Terdistribusinya 50 paket makanan tambahan balita')">
+            <div>
+                <div class="proker-card-header">
+                    <h3>Sosialisasi PHBS & Penyuluhan Stunting</h3>
+                    <span class="status-badge proses">Dalam Proses</span>
+                </div>
+                <div class="proker-meta">
+                    <p>👤 <strong>PJ:</strong> Nama</p>
+                    <p>📅 <strong>Waktu:</strong> Minggu ke-3</p>
+                </div>
+            </div>
+            <div class="btn-detail-palsu">Lihat Detail Inti →</div>
+        </div>
+
+        <div class="proker-card" onclick="bukaModal('Pengadaan Apotek Hidup & Edukasi TOGA Desa', 'Penanaman tanaman obat keluarga (TOGA) di area pekarangan kantor desa bersama kelompok ibu-ibu PKK.', 'Budi Santoso & Perlengkapan', 'Minggu ke-4 (26 Juli 2026)', 'Belum Berjalan', 'Rp 300.000 (Pembelian Bibit & Plang)', 'Tersedianya 15 varietas tanaman obat berlabel infografis')">
+            <div>
+                <div class="proker-card-header">
+                    <h3>Apotek Hidup & Edukasi Tanaman TOGA</h3>
+                    <span class="status-badge belum">Belum Mulai</span>
+                </div>
+                <div class="proker-meta">
+                    <p>👤 <strong>PJ:</strong> nama</p>
+                    <p>📅 <strong>Waktu:</strong> Minggu ke-4</p>
+                </div>
+            </div>
+            <div class="btn-detail-palsu">Lihat Detail Inti →</div>
+        </div>
+
+    </div>
+</main>
+
+<div class="modal-overlay" id="modalProker" onclick="tutupModalLuar(event)">
+    <div class="modal-box">
+        <button class="modal-close-btn" onclick="tutupModal()">✕</button>
+        <h2 id="m-judul">Judul Program Kerja</h2>
+        
+        <div class="modal-content-scroll">
+            <div class="modal-detail-item">
+                <strong>📝 Deskripsi Kegiatan</strong>
+                <p id="m-deskripsi">Isi deskripsi...</p>
+            </div>
+            <div class="modal-detail-item">
+                <strong>👤 Penanggung Jawab (PJ)</strong>
+                <p id="m-pj">Nama PJ...</p>
+            </div>
+            <div class="modal-detail-item">
+                <strong>📅 Target Pelaksanaan</strong>
+                <p id="m-waktu">Waktu pelaksanaan...</p>
+            </div>
+            <div class="modal-detail-item">
+                <strong>💰 Rencana Anggaran Dana</strong>
+                <p id="m-anggaran">Nilai anggaran...</p>
+            </div>
+            <div class="modal-detail-item">
+                <strong>🎯 Indikator Keberhasilan</strong>
+                <p id="m-indikator">Target pencapaian...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function bukaModal(judul, deskripsi, pj, waktu, status, anggaran, indikator) {
+        document.getElementById("m-judul").innerText = judul;
+        document.getElementById("m-deskripsi").innerText = deskripsi;
+        document.getElementById("m-pj").innerText = pj;
+        document.getElementById("m-waktu").innerText = waktu;
+        document.getElementById("m-anggaran").innerText = anggaran;
+        document.getElementById("m-indikator").innerText = indikator;
+
+        document.getElementById("modalProker").classList.add("active");
+    }
+
+    function tutupModal() {
+        document.getElementById("modalProker").classList.remove("active");
+    }
+
+    // Menutup modal jika pengguna tidak sengaja mengklik area abu-abu luar kotak
+    function tutupModalLuar(e) {
+        if(e.target.id === "modalProker") {
+            tutupModal();
+        }
+    }
+</script>
+
+</body>
+</html>

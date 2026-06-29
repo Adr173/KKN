@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Notulensi | Website KKN</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="notulensi.css">
+
+</head>
+
+<body>
+
+<div class="container">
+    <header class="header">
+
+    <div>
+
+        <h1>Notulensi KKN</h1>
+
+        <h2>Daftar Notulensi</h2>
+
+        <p>
+             Semua hasil rapat akan ditampilkan pada bagian ini.
+        </p>
+
+    </div>
+
+    <div class="header-button">
+
+        <a href="index.html" class="back-btn">
+
+            ← Beranda
+
+        </a>
+
+    </div>
+
+</header>
+
+
+<section class="dashboard-info">
+
+    <div class="info-box">
+
+        <h3>Hari Ini</h3>
+
+        <p id="tanggalHariIni">
+            Loading...
+
+        </p>
+
+    </div>
+
+    <div class="info-box">
+
+        <h3>Update Terakhir</h3>
+
+        <p id="jamUpdate">
+
+            -
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<section class="cards">
+
+    <div class="card">
+
+        <h2 id="totalNotulensi">0</h2>
+
+        <p>Total Notulensi</p>
+
+    </div>
+
+    <div class="card">
+
+        <h2 id="bulanIni">0</h2>
+
+        <p>Bulan Ini</p>
+
+    </div>
+
+    <div class="card">
+
+        <h2 id="pending">0</h2>
+
+        <p>Belum Selesai</p>
+
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+<section class="toolbar">
+
+    <input
+
+        type="text"
+
+        id="searchInput"
+
+        placeholder="🔍 Cari Judul Notulensi">
+
+
+
+    <select id="filterStatus">
+        <option value="Semua Status">Semua Status</option>
+        <option value="Final">Final</option>
+        <option value="Draft">Draft</option>
+
+    </select>
+
+    <select id="filterMinggu">
+
+    <option value="Semua">Semua Minggu</option>
+
+    <option value="1">Minggu 1</option>
+
+    <option value="2">Minggu 2</option>
+
+    <option value="3">Minggu 3</option>
+
+    <option value="4">Minggu 4</option>
+
+    <option value="5">Minggu 5</option>
+
+    <option value="5">Minggu 6</option>
+
+</select>
+
+</section>
+
+
+
+
+<section id="notulensiContainer">
+
+    <!-- Card akan muncul di sini -->
+
+
+    <div class="note-card">
+
+    <span class="status selesai">
+        Selesai
+    </span>
+
+    <h3>Rapat Persiapan Seminar Desa</h3>
+
+    <p>📅 29 Juni 2026</p>
+
+    <p>📍 Kantor Desa</p>
+
+    <p>👥 18 Peserta</p>
+
+    <hr>
+
+    <p class="preview">
+
+        Persiapan seminar desa dan pembagian tugas masing-masing divisi...
+
+    </p>
+
+    <button>
+
+        Lihat Detail
+
+    </button>
+
+</div>
+
+</section>
+
+
+
+
+
+
+
+</div>
+
+<a href="buat-notulensi.html" class="floating-button">
+
+    ＋
+
+</a>
+
+<script src="notulensi.js"></script>
+
+</body>
+
+</html>

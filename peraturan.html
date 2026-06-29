@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peraturan & Jadwal KKN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* =========================================================================
+           RESET & VARIABEL GAYA UTAMA
+           ========================================================================= */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      :root {
+        --primary-color: #1a365d;
+        --accent-color: #3182ce;
+        --success-color: #38a169;
+        --danger-color: #e53e3e;
+        --bg-color: #f4f7fc;
+        --card-color: #ffffff;
+        --text-main: #2d3748;
+        --text-muted: #718096;
+      }
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        line-height: 1.6;
+        padding-bottom: 50px;
+      }
+
+      /* =========================================================================
+           NAVIGASI BAR (SINKRONKAN DENGAN HALAMAN LAIN)
+           ========================================================================= */
+      .navbar {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 15px 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .navbar .brand {
+        font-weight: 700;
+        font-size: 18px;
+        letter-spacing: 0.5px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 20px;
+      }
+      .nav-links a {
+        color: #e2e8f0;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: white;
+        border-bottom: 2px solid var(--accent-color);
+      }
+
+      /* =========================================================================
+           HEADER BANNER
+           ========================================================================= */
+      .header-section {
+        background: linear-gradient(135deg, #1a365d 0%, #2a4365 100%);
+        color: white;
+        text-align: center;
+        padding: 50px 20px;
+      }
+      .header-section h1 {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      .header-section p {
+        color: #cbd5e0;
+        font-size: 14px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      /* =========================================================================
+           KONTEN UTAMA
+           ========================================================================= */
+      .container {
+        max-width: 1000px;
+        margin: 30px auto;
+        padding: 0 20px;
+      }
+
+      /* Panduan Do's & Don'ts */
+      .dos-donts-box {
+        background: white;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+        margin-bottom: 30px;
+      }
+      .dos-donts-box h3 {
+        margin-bottom: 20px;
+        text-align: center;
+        color: var(--primary-color);
+      }
+      .dos-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      @media (max-width: 768px) {
+        .dos-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .sub-box {
+        padding: 20px;
+        border-radius: 8px;
+      }
+      .sub-box.positive {
+        background-color: #f0fff4;
+        border-left: 4px solid var(--success-color);
+      }
+      .sub-box.negative {
+        background-color: #fff5f5;
+        border-left: 4px solid var(--danger-color);
+      }
+      .sub-box h4 {
+        margin-bottom: 10px;
+        font-size: 15px;
+      }
+      .sub-box.positive h4 {
+        color: var(--success-color);
+      }
+      .sub-box.negative h4 {
+        color: var(--danger-color);
+      }
+
+      .list-aturan {
+        list-style: none;
+      }
+      .list-aturan li {
+        font-size: 13.5px;
+        padding: 8px 0;
+        border-bottom: 1px dashed #e2e8f0;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .list-aturan li:last-child {
+        border-bottom: none;
+      }
+
+      /* Grid Kategori Aturan */
+      .grid-kategori {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-bottom: 40px;
+      }
+      .card-aturan {
+        background: var(--card-color);
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+        border-top: 5px solid var(--accent-color);
+      }
+      .card-aturan.sanksi {
+        border-top-color: var(--danger-color);
+      }
+      .card-aturan h3 {
+        color: var(--primary-color);
+        font-size: 18px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      /* =========================================================================
+           🗂️ GAYA SEKSI JADWAL PIKET & KONSUMSI
+           ========================================================================= */
+      .jadwal-section {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+        margin-top: 40px;
+      }
+      .jadwal-section h2 {
+        font-size: 22px;
+        color: var(--primary-color);
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      .jadwal-section p.sub-p {
+        text-align: center;
+        font-size: 13px;
+        color: var(--text-muted);
+        margin-bottom: 25px;
+      }
+
+      .tabel-responsive {
+        overflow-x: auto; /* Mencegah tabel rusak di layar HP kecil */
+        margin-bottom: 25px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-size: 14px;
+      }
+
+      th {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 12px 15px;
+        font-weight: 500;
+      }
+
+      td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #e2e8f0;
+        color: #4a5568;
+      }
+
+      /* Striped effect: Baris genap warnanya agak abu-abu tipis */
+      tr:nth-child(even) td {
+        background-color: #f7fafc;
+      }
+
+      .hari-badge {
+        background-color: #edf2f7;
+        color: var(--primary-color);
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 12px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="brand">KKN DIGITAL ARCHIVE</div>
+      <div class="nav-links">
+         <a href="index.html">Beranda</a>
+        <a href="notulensi.html">Notulensi</a>
+        <a href="dokumen.html">Dokumen</a>
+        <a href="peraturan.html" class="active">Peraturan</a>
+      </div>
+    </nav>
+
+    <header class="header-section">
+      <h1>Peraturan & Manajemen Operasional Posko</h1>
+      <p>
+        Pedoman tata tertib KKN beserta pembagian tugas piket harian seluruh
+        anggota kelompok.
+      </p>
+    </header>
+
+    <main class="container">
+      <section class="dos-donts-box">
+        <h3>📌 Panduan Cepat Perilaku</h3>
+        <div class="dos-grid">
+          <div class="sub-box positive">
+            <h4>✅ HAL YANG WAJIB DILAKUKAN (DO'S)</h4>
+            <ul class="list-aturan">
+              <li>
+                <span style="color: var(--success-color); font-weight: bold"
+                  >✔</span
+                >
+                Menjaga 5S kepada warga lokal di lokasi KKN.
+              </li>
+              <li>
+                <span style="color: var(--success-color); font-weight: bold"
+                  >✔</span
+                >
+                Mengikuti seluruh rangkaian program kerja inti kelompok.
+              </li>
+              <li>
+                <span style="color: var(--success-color); font-weight: bold"
+                  >✔</span
+                >
+                Mengisi presensi, logbook individu dan ikut evaluasi mingguan.
+              </li>
+            </ul>
+          </div>
+          <div class="sub-box negative">
+            <h4>❌ HAL YANG DILARANG (DON'Ts)</h4>
+            <ul class="list-aturan">
+              <li>
+                <span style="color: var(--danger-color); font-weight: bold"
+                  >✖</span
+                >
+                Meninggalkan desa KKN tanpa izin Kordes & DPL.
+              </li>
+              <li>
+                <span style="color: var(--danger-color); font-weight: bold"
+                  >✖</span
+                >
+                Membuat kegaduhan yang merusak harmoni kelompok.
+              </li>
+              <li>
+                <span style="color: var(--danger-color); font-weight: bold"
+                  >✖</span
+                >
+                Menerima tamu asing menginap tanpa pemberitahuan.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid-kategori">
+        <div class="card-aturan">
+          <h3>🏠 1. Tata Tertib Posko</h3>
+          <ul class="list-aturan">
+            <li>
+              Anggota wajib menjaga kenyamanan dan kebersihan posko bersama.
+            </li>
+            <li>
+              Batas jam malam aktivitas luar posko maksimal pukul 22.00 WITA.
+            </li>
+          </ul>
+        </div>
+        <div class="card-aturan">
+          <h3>💼 2. Pelaksanaan Proker</h3>
+          <ul class="list-aturan">
+            <li>Bertanggung jawab penuh atas sub-proker yang diembannya.</li>
+            <li>
+              Wajib memakai almamater/kemeja angkatan saat terjun ke masyarakat.
+            </li>
+          </ul>
+        </div>
+        <div class="card-aturan sanksi">
+          <h3>⚠️ 3. Mekanisme Sanksi</h3>
+          <ul class="list-aturan">
+            <li>
+              <strong>Teguran 1:</strong> Teguran lisan persuasif oleh Kordes.
+            </li>
+            <li>
+              <strong>Teguran 2:</strong> Surat peringatan tertulis internal
+              kelompok.
+            </li>
+            <li>
+              <strong>Teguran 3:</strong> Akan dilaporkan Ke Supervisor KKN
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="jadwal-section">
+        <h2>📅 Jadwal Piket Harian Posko</h2>
+        <p class="sub-p">
+          Petugas piket bertanggung jawab penuh atas kebersihan area posko dan
+          penyediaan konsumsi (masak/beli) tim pada hari yang bersangkutan.
+        </p>
+
+        <div class="tabel-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 15%">Hari</th>
+                <th style="width: 40%">🧹 Tim Kebersihan (Posko & Halaman)</th>
+                <th style="width: 45%">
+                  🍳 Tim Konsumsi (Masak Belanja Pagi & Malam)
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="hari-badge">Senin</span></td>
+                <td>Nama</td>
+                <td>Nama</td>
+              </tr>
+              <tr>
+                <td><span class="hari-badge">Selasa</span></td>
+                <td>Nama</td>
+                <td>Nama</td>
+              </tr>
+              <tr>
+                <td><span class="hari-badge">Rabu</span></td>
+                <td>Nama</td>
+                <td>Nama</td>
+              </tr>
+              <tr>
+                <td><span class="hari-badge">Kamis</span></td>
+                <td>Nama</td>
+                <td>Nama</td>
+              </tr>
+              <tr>
+                <td><span class="hari-badge">Jumat</span></td>
+                <td>Nama</td>
+                <td>Nama</td>
+              </tr>
+              <tr>
+                <td><span class="hari-badge">Sabtu</span></td>
+                <td>Nama</td>
+                <td>Nama</td>
+              </tr>
+              <tr>
+                <td>
+                  <span
+                    class="hari-badge"
+                    style="background-color: #feebc8; color: #c05621"
+                    >Minggu</span
+                  >
+                </td>
+                <td
+                  colspan="2"
+                  style="
+                    text-align: center;
+                    font-weight: 500;
+                    color: #c05621;
+                    background-color: #fffaf0;
+                  "
+                >
+                  ✨ BERSANGKAT / KERJA BAKTI MASSAL & BEBAS MASAK BERSAMA ✨
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

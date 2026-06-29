@@ -1,0 +1,336 @@
+/*====================================
+        RESET
+====================================*/
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#f4f6fb;
+
+    color:#333;
+
+}
+
+.container{
+
+    width:90%;
+
+    max-width:1100px;
+
+    margin:auto;
+
+    padding:40px 0;
+
+}
+
+
+/*====================================
+        HEADER
+====================================*/
+
+.header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+}
+
+.header h1{
+
+    font-size:32px;
+
+    color:#1f3b73;
+
+}
+
+.header p{
+
+    color:#666;
+
+    margin-top:6px;
+
+}
+
+.back-btn{
+
+    text-decoration:none;
+
+    background:#e9eef9;
+
+    color:#1f3b73;
+
+    padding:12px 22px;
+
+    border-radius:10px;
+
+    font-weight:500;
+
+    transition:.3s;
+
+}
+
+.back-btn:hover{
+
+    background:#1f3b73;
+
+    color:white;
+
+}
+
+
+
+/*====================================
+        CARD
+====================================*/
+
+.card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    margin-bottom:25px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+
+}
+
+.card h2{
+
+    color:#1f3b73;
+
+    margin-bottom:20px;
+
+}
+
+
+
+
+/*====================================
+        GRID
+====================================*/
+
+.grid-2{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:20px;
+
+}
+
+.grid-3{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+
+
+
+/*====================================
+        LABEL
+====================================*/
+
+label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+    color:#444;
+
+}
+
+
+
+
+
+/*====================================
+        INPUT
+====================================*/
+
+input,
+
+select,
+
+textarea{
+
+    width:100%;
+
+    padding:14px;
+
+    border:1px solid #d7dce5;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    font-family:'Poppins',sans-serif;
+
+    transition:.3s;
+
+}
+
+textarea{
+
+    resize:vertical;
+
+}
+
+input:focus,
+
+select:focus,
+
+textarea:focus{
+
+    outline:none;
+
+    border-color:#2f80ed;
+
+    box-shadow:0 0 8px rgba(47,128,237,.25);
+
+}
+
+
+
+/*====================================
+        BUTTON
+====================================*/
+
+.button-group{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:15px;
+
+    margin-top:35px;
+
+}
+
+.button-group button{
+
+    padding:14px 28px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.button-group button[type="reset"]{
+
+    background:#d9dde6;
+
+}
+
+.button-group button[type="reset"]:hover{
+
+    background:#bfc4ce;
+
+}
+
+.button-group button[type="submit"]{
+
+    background:#2f80ed;
+
+    color:white;
+
+}
+
+.button-group button[type="submit"]:hover{
+
+    background:#1366d6;
+
+}
+
+
+
+/*====================================
+        FILE
+====================================*/
+
+input[type=file]{
+
+    padding:10px;
+
+}
+
+
+
+/*====================================
+        RESPONSIVE
+====================================*/
+
+@media(max-width:768px){
+
+    .header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:15px;
+
+    }
+
+    .grid-2{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .grid-3{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .button-group{
+
+        flex-direction:column;
+
+    }
+
+    .button-group button{
+
+        width:100%;
+
+    }
+
+}

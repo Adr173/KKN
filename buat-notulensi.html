@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Buat Notulensi | Website KKN</title>
+
+    <!-- Google Font -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="buat-notulensi.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ===========================
+            HEADER
+    ============================ -->
+
+    <header class="header">        
+
+        <div>
+
+            <h1>Form Notulensi</h1>
+
+            <p>
+                Silakan lengkapi seluruh data rapat atau kegiatan.
+            </p>
+
+        </div>
+
+        <div class="header-button">
+
+            <a href="notulensi.html" class="back-btn">
+
+                ← Kembali
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <form id="notulensiForm">
+
+  <!-- ===========================
+        INFORMASI DASAR
+=========================== -->
+
+<section class="card">
+
+    <h2>Informasi Rapat</h2>
+
+    <div class="grid-2">
+
+        <div>
+
+            <label>Judul Rapat</label>
+
+            <input
+                type="text"
+                id="judul"
+                required>
+
+        </div>
+
+        <div>
+
+            <label>Jenis Kegiatan</label>
+
+            <select id="jenis">
+
+                <option>Rapat Internal</option>
+
+                <option>Seminar</option>
+
+                <option>Sosialisasi</option>
+
+                <option>Kerja Bakti</option>
+
+                <option>Evaluasi</option>
+
+                <option>Lainnya</option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+</section>      
+
+
+    <section class="card">
+
+<h2>Waktu Pelaksanaan</h2>
+
+<div class="grid-3">
+
+<div>
+
+<label>Tanggal</label>
+
+<input
+type="date"
+id="tanggal">
+
+</div>
+
+<div>
+
+<label>Jam Mulai</label>
+
+<input
+type="time"
+id="mulai">
+
+</div>
+
+<div>
+
+<label>Jam Selesai</label>
+
+<input
+type="time"
+id="selesai">
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="card">
+
+<h2>Lokasi</h2>
+
+<input
+type="text"
+id="tempat"
+placeholder="Contoh : Kantor Desa">
+
+</section>
+
+
+
+<section class="card">
+
+<h2>Peserta</h2>
+
+<textarea
+
+id="peserta"
+
+rows="4"
+
+placeholder="Contoh:
+
+Ketua KKN
+
+Sekretaris
+
+Seluruh Mahasiswa
+
+Perangkat Desa">
+
+</textarea>
+
+</section>
+
+
+
+<section class="card">
+
+<h2>Agenda</h2>
+
+<textarea
+
+id="agenda"
+
+rows="6">
+
+</textarea>
+
+</section>
+
+
+<section class="card">
+
+<h2>Pembahasan</h2>
+
+<textarea
+
+id="pembahasan"
+
+rows="8">
+
+</textarea>
+
+</section>
+
+
+
+<section class="card">
+
+<h2>Keputusan</h2>
+
+<textarea
+
+id="keputusan"
+
+rows="5">
+
+</textarea>
+
+</section>
+
+
+
+<section class="card">
+
+<h2>Tindak Lanjut</h2>
+
+<textarea
+
+id="tindakLanjut"
+
+rows="5">
+
+</textarea>
+
+</section>
+
+
+
+<section class="card">
+
+<h2>Status Dokumen</h2>
+
+<select id="status">
+
+<option>Draft</option>
+
+<option>Final</option>
+
+</select>
+
+</section>
+
+
+
+
+<section class="card">
+
+<h2>Lampiran Foto</h2>
+
+<label for="lampiran">Foto Dokumentasi</label>
+
+<input
+
+type="file"
+
+id="lampiran"
+
+accept="image/*">
+
+</section>
+
+
+
+
+<section class="card">
+
+<h2>Catatan Tambahan</h2>
+
+<textarea
+
+id="catatan"
+
+rows="4">
+
+</textarea>
+
+</section>
+
+
+
+
+<div class="button-group">
+
+<button
+type="reset">
+
+Reset
+
+</button>
+
+<button
+type="submit">
+
+Simpan Notulensi
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+<script src="buat-notulensi.js"></script>
+
+</body>
+</html>

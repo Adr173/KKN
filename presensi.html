@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Presensi | Website KKN</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="presensi.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- ===========================
+                HEADER
+        ============================ -->
+
+        <header class="header">
+
+            <div>
+
+                <h1>Presensi KKN</h1>
+
+                <p id="tanggalHariIniHeader">
+                    Loading...
+                </p>
+
+            </div>
+
+            <div class="header-button">
+
+                <a href="index.html" class="back-btn">
+
+                    ← Beranda
+
+                </a>
+
+                <a href="https://forms.gle/XnHftPnsusMwbJzR9"
+                    target="_blank"
+                    class="btn-presensi">
+
+                    Isi Presensi
+
+                </a>
+
+            </div>
+
+        </header>
+
+
+
+        <div class="dashboard-info">
+
+    <div>
+        <h3>📅 Presensi Hari Ini</h3>
+        <p id="tanggalHariIni"></p>
+    </div>
+
+    <div>
+        <strong>Zona Waktu</strong><br>
+        WITA (GMT+8)
+    </div>
+
+    <div>
+        <strong>Terakhir diperbarui</strong><br>
+        <span id="jamUpdate"></span>
+    </div>
+
+</div>
+
+
+        <!-- ===========================
+                STATISTIK
+        ============================ -->
+
+        <section class="cards">
+
+            <div class="card total">
+
+                <h2 id="totalMahasiswa">0</h2>
+
+                <p>Total Mahasiswa</p>
+
+            </div>
+
+            <div class="card hadir">
+                <h2 id="hadir">0</h2>
+                <p>Hadir</p>
+
+            </div>
+
+            <div class="card izin">
+                <h2 id="izin">0</h2>
+                <p>Izin</p>
+
+            </div>
+
+            <div class="card sakit">
+                <h2 id="sakit">0</h2>
+                <p>Sakit</p>
+
+            </div>
+
+        </section>
+
+
+<!-- ============================
+        FILTER
+============================= -->
+
+<div class="toolbar">
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="🔍 Cari Nama, NIM, atau Kegiatan">
+
+    </div>
+
+    <div class="filter-box">
+
+        <select id="filterStatus">
+
+            <option value="Semua">Semua Status</option>
+            <option value="Hadir">Hadir</option>
+            <option value="Izin">Izin</option>
+            <option value="Sakit">Sakit</option>
+
+        </select>
+
+    </div>
+
+</div>
+
+
+
+        <!-- ===========================
+                TABEL
+        ============================ -->
+
+        <section class="table-container">
+            <div class="table-header">
+                <h2>Riwayat Presensi</h2>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>NIM</th>
+                        <th>Status</th>
+                        <th>Waktu</th>
+                        <th>Kegiatan</th>
+                        <th>Keterangan</th>
+
+                    </tr>
+                </thead>
+                <tbody id="presensiTable">
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+
+
+
+    <div class="pagination">
+
+    <button id="prevBtn">← Sebelumnya</button>
+
+    <div id="pageNumbers"></div>
+
+    <button id="nextBtn">Selanjutnya →</button>
+
+</div>
+
+
+
+    <!-- JavaScript -->
+
+    <script src="presensi.js"></script>
+
+</body>
+
+</html>

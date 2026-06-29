@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struktur Organisasi Posko KKN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================================================
+           RESET & VARIABEL WARNA SINKRON WEBSITE
+           ========================================================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        :root {
+            --primary-color: #4a1d1d; /* Merah tua/cokelat khas Hero Banner Anda */
+            --accent-color: #d8931c;  /* Emas soft */
+            --bg-color: #fdfdda;
+            --card-color: #ffffff;
+            --text-main: #2d3748;
+            --text-muted: #718096;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* =========================================================================
+           NAVIGASI BAR
+           ========================================================================= */
+        .navbar {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .navbar .brand { font-weight: 700; font-size: 16px; letter-spacing: 0.5px; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { color: #e2e8f0; text-decoration: none; font-size: 14px; font-weight: 500; }
+        .nav-links a.active { color: white; border-bottom: 2px solid var(--accent-color); }
+
+        /* =========================================================================
+           HEADER HALAMAN
+           ========================================================================= */
+        .header-section {
+            background: linear-gradient(135deg, #4a1d1d 0%, #2d1010 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 40px;
+        }
+        .header-section h1 { font-size: 24px; font-weight: 600; margin-bottom: 5px; }
+        .header-section p { color: #cbd5e0; font-size: 13px; }
+
+        /* =========================================================================
+           BAGAN STRUKTUR (HIERARKI VERTIKAL & HORIZONTAL)
+           ========================================================================= */
+        .bagan-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Garis Alur Tegak Penghubung Antar Tingkat */
+        .garis-penghubung {
+            width: 2px;
+            height: 30px;
+            background-color: #cbd5e0;
+            position: relative;
+        }
+
+        /* Baris Pengurus */
+        .row-pengurus {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+            width: 100%;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+
+        /* 🗂️ DESAIN KARTU ANGGOTA + FRAME FOTO */
+        .kartu-jabatan {
+            background: var(--card-color);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            padding: 15px;
+            text-align: center;
+            width: 250px;
+            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .kartu-jabatan:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        }
+
+        /* Frame Foto Bulat Semetris */
+        .frame-foto {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            margin: 0 auto 12px auto;
+            overflow: hidden;
+            border: 3px solid #e2e8f0;
+            background-color: #edf2f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .frame-foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Menjaga foto tidak gepeng */
+        }
+        
+        /* Jika foto belum diunggah, ini siluet defaultnya */
+        .avatar-placeholder {
+            font-size: 40px;
+            color: #a0aec0;
+            line-height: 1;
+        }
+
+        /* Detail Teks Kartu */
+        .kartu-jabatan .label-jabatan {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background-color: #fff8eb;
+            color: #b7791f;
+            padding: 2px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+        /* Variasi warna khusus pembimbing & kordes */
+        .dpk .label-jabatan { background-color: #ebf8ff; color: #2b6cb0; }
+        .kordes .label-jabatan { background-color: #f7fafc; color: var(--primary-color); border: 1.5px solid var(--primary-color); }
+
+        .kartu-jabatan h3 {
+            font-size: 14px;
+            color: var(--text-main);
+            font-weight: 600;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .kartu-jabatan .nim-text {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* =========================================================================
+           GARIS CABANG KHUSUS UNTUK JALUR ANGGOTA BAWAH
+           ========================================================================= */
+        .garis-cabang-lebar {
+            width: 80%;
+            height: 2px;
+            background-color: #cbd5e0;
+            margin-top: -2px;
+        }
+
+        /* Responsif Layar Kecil (HP) */
+        @media (max-width: 768px) {
+            .row-pengurus { gap: 15px; }
+            .garis-cabang-lebar { display: none; }
+            .garis-penghubung { height: 20px; }
+            .kartu-jabatan { width: 45%; min-width: 150px; padding: 10px; }
+            .frame-foto { width: 70px; height: 70px; }
+            .kartu-jabatan h3 { font-size: 12px; }
+        }
+    </style>
+</head>
+
+
+
+<body>
+
+<nav class="navbar">
+    <div class="brand">STRUKTUR ORGANISASI</div>
+    <div class="nav-links">
+        <a href="index.html">Beranda</a>
+        <a href="notulensi.html">Notulensi</a>
+        <a href="dokumen.html">Dokumen</a>
+        <a href="peraturan.html">Peraturan</a>
+        <a href="struktur.html" class="active">Struktur</a>
+    </div>
+</nav>
+
+<header class="header-section">
+    <h1>Struktur Organisasi Posko Desa Tompo</h1>
+    <p>KKN-PK 69 Universitas Hasanuddin</p>
+</header>
+
+<main class="bagan-container">
+
+    <div class="row-pengurus">
+        <div class="kartu-jabatan dpk">
+            <div class="frame-foto">
+                <img src="supervisor.jpeg" alt="Foto DPK" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="avatar-placeholder" style="display:none;">👨‍🏫</span>
+            </div>
+            <span class="label-jabatan">Supervisor</span>
+            <h3>Dr. Rahayu Nurul Reski, S.Si</h3>
+            <div class="nim-text">NIP. 19951128 202412 4001</div>
+        </div>
+    </div>
+
+    <div class="garis-penghubung"></div>
+
+    <div class="row-pengurus">
+        <div class="kartu-jabatan kordes">
+            <div class="frame-foto">
+                <img src="rio.png" alt="Foto Kordes" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="avatar-placeholder" style="display:none;">👨‍💼</span>
+            </div>
+            <span class="label-jabatan">Koordinator Desa</span>
+            <h3>Alvaryo Liandy</h3>
+            <div class="nim-text">NIM. C011231143</div>
+        </div>
+    </div>
+
+    <div class="garis-penghubung"></div>
+
+    <div class="row-pengurus">
+        <div class="kartu-jabatan">
+            <div class="frame-foto">
+                <img src="andira.png" alt="Foto Andira" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="avatar-placeholder" style="display:none;">👩‍💼</span>
+            </div>
+            <span class="label-jabatan">Sekretaris</span>
+            <h3>Andira Maharani</h3>
+            <div class="nim-text">NIM. H021231025</div>
+        </div>
+
+        <div class="kartu-jabatan">
+            <div class="frame-foto">
+                <img src="dini.png" alt="Foto Bendahara" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="avatar-placeholder" style="display:none;">👩‍⚕️</span>
+            </div>
+            <span class="label-jabatan">Bendahara</span>
+            <h3>Dini Hafizhah Isfa</h3>
+            <div class="nim-text">NIM. K021231028</div>
+        </div>
+    </div>
+
+    <div class="garis-penghubung"></div>
+    <div class="garis-cabang-lebar"></div>
+    <div class="garis-penghubung"></div>
+
+    <div class="row-pengurus">
+        
+        <div class="kartu-jabatan">
+            <div class="frame-foto">
+                <img src="diva.png" alt="Foto Anggota" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="avatar-placeholder" style="display:none;">👤</span>
+            </div>
+            <span class="label-jabatan">Anggota / Humas</span>
+            <h3>Diva Alia Talattaf</h3>
+            <div class="nim-text">NIM. J011231121</div>
+        </div>
+
+        <div class="kartu-jabatan">
+            <div class="frame-foto">
+                <img src="abidah.png" alt="Foto Anggota" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="avatar-placeholder" style="display:none;">👤</span>
+            </div>
+            <span class="label-jabatan">Anggota / PDD</span>
+            <h3>Abidah Khaerunnisa</h3>
+            <div class="nim-text">NIM. R011231076</div>
+        </div>
+
+        <div class="kartu-jabatan">
+            <div class="frame-foto">
+                <img src="shinrei.png" alt="Foto Anggota" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="avatar-placeholder" style="display:none;">👤</span>
+            </div>
+            <span class="label-jabatan">Anggota / Logistik</span>
+            <h3>Shinrei Fattahurizky</h3>
+            <div class="nim-text">NIM. C031231076</div>
+        </div>
+
+        <div class="kartu-jabatan">
+            <div class="frame-foto">
+                <img src="img/anggota4.jpg" alt="Foto Anggota" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="avatar-placeholder" style="display:none;">👤</span>
+            </div>
+            <span class="label-jabatan">Anggota / Acara</span>
+            <h3>RISKA</h3>
+            <div class="nim-text">NIM. K011231216</div>
+        </div>
+
+    </div>
+
+</main>
+
+</body>
+</html>
