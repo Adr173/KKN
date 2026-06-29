@@ -183,6 +183,7 @@ body {
   width: 35%;
   height: 100%;
   position: relative;
+  overflow: hidden;
 }
 
 /* Trik memotong atas di laptop */
@@ -234,24 +235,30 @@ body {
   }
 
   .hero-image {
-    width: 100%;
-    height: auto;
-     right: -20px; 
-    display: flex;
-    justify-content: center;
+    width: 100% !important;
+    height: auto !important;
+    position: static !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    overflow: visible !important;
   }
 
-  /* Di HP, matikan setelan absolut laptop agar logo tidak menutupi teks */
+  /* Di HP - paksa tengah dan besar dengan !important */
   .hero-image img {
-    position: relative;
-    bottom: auto;
-    right: auto;
-    height: auto;
-    width: 90%;
-    max-width: 400px;
-    margin: 0 auto;
-    display: block;
-    filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.3));
+    position: static !important;
+    bottom: auto !important;
+    right: auto !important;
+    top: auto !important;
+    left: auto !important;
+    height: auto !important;
+    width: 100% !important;
+    max-width: 450px !important;
+    margin: 0 auto !important;
+    display: block !important;
+    transform: none !important;
+    object-fit: contain !important;
+    filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.3)) !important;
   }
 }
 
@@ -783,23 +790,29 @@ body {
 
   /* Gambar diperbesar & ditengahkan */
   .hero-image {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    order: 1; /* Gambar di atas */
-    margin-bottom: 10px;
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    order: 1 !important;
+    margin-bottom: 10px !important;
+    overflow: visible !important;
   }
 
   .hero-image img {
-    position: relative;
-    bottom: auto;
-    height: auto;
-    width: 90%;
-    max-width: 380px;
-    margin: 0 auto;
-    display: block;
-    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.35));
+    position: static !important;
+    bottom: auto !important;
+    right: auto !important;
+    top: auto !important;
+    left: auto !important;
+    height: auto !important;
+    width: 100% !important;
+    max-width: 500px !important;
+    margin: 0 auto !important;
+    display: block !important;
+    transform: none !important;
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.35)) !important;
   }
 
   .hero-section .main-title {
