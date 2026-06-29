@@ -793,8 +793,10 @@ body {
     bottom: auto;
     right: auto;
     height: auto;
-    width: 75%;
-    max-width: 300px;
+    width: 90%;
+    max-width: 380px;
+    margin: 0 auto;
+    display: block;
     filter: drop-shadow(0 8px 16px rgba(0,0,0,0.35));
   }
 
