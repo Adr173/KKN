@@ -25,6 +25,8 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 0 60px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 /* ================================
@@ -32,8 +34,9 @@ body {
 ================================ */
 
 .logo img {
-  height: 200px;
-  width: fit-content;
+  height: 70px;
+  width: auto;
+  max-width: 200px;
 }
 
 /* ================================
@@ -101,7 +104,7 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 80px; /* Jarak atas agar logo saat lolos tidak menabrak navbar */
+  margin-top: 80px;
   padding: 0 15px;
   box-sizing: border-box;
 }
@@ -721,128 +724,91 @@ body {
 }
 
 /* =========================================================================
-   📱 MEDIA QUERY HP — TAMPILAN MOBILE LENGKAP
+   📱 MEDIA QUERY HP — PERBAIKAN TOTAL TAMPILAN MOBILE
    ========================================================================= */
 @media screen and (max-width: 768px) {
-
-  /* --- NAVBAR: kecilkan padding & logo, TAMPILKAN menu --- */
+  /* --- NAVBAR --- */
   .navbar {
-    padding: 0 16px;
-    height: 60px;
-    box-sizing: border-box;
-    overflow: visible;
+    padding: 0 15px;
+    height: 65px;
+    position: relative;
   }
 
   .logo img {
-    height: 48px;
-    width: auto;
-    max-width: 150px;
+    height: 50px;
+    max-width: 160px;
   }
 
-  /* Tampilkan menu tapi lebih kecil */
   .nav-menu {
-    display: flex;
-    gap: 16px;
+    display: none; /* Sembunyikan menu di HP */
   }
 
-  .nav-menu a {
-    font-size: 13px;
-  }
-
-  /* Sembunyikan hanya tombol login agar tidak meluber */
   .nav-button {
-    display: none;
+    display: none; /* Sembunyikan tombol login di HP */
   }
 
   /* --- HERO --- */
   .hero-container {
-    margin-top: 16px;
-    padding: 0 10px;
+    margin-top: 20px;
+    padding: 0 12px;
   }
 
   .hero-section {
-    flex-direction: column;
-    height: auto;
-    padding: 30px 20px 20px;
-    text-align: center;
-    gap: 0;
-    border-radius: 18px;
-    overflow: visible;
+    padding: 30px 20px;
+    border-radius: 16px;
   }
 
-  .hero-content {
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    order: 2; /* Teks di bawah gambar */
-  }
-
-  /* Gambar diperbesar & ditengahkan */
-  .hero-image {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    order: 1; /* Gambar di atas */
-    margin-bottom: 10px;
-  }
-
-  .hero-image img {
-    position: relative;
-    bottom: auto;
-    right: auto;
-    height: auto;
-    width: 75%;
-    max-width: 300px;
-    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.35));
-  }
-
-  .hero-section .main-title {
-    font-size: 32px;
-    margin-bottom: 6px;
-  }
-
-  .hero-section .sub-title-1 {
-    font-size: 20px;
-  }
-
-  .hero-section .sub-title-2 {
-    font-size: 16px;
-  }
-
-  .hero-section .hero-desc {
-    border-left: none;
-    border-top: 2px solid #fbd38d;
-    padding-left: 0;
-    padding-top: 14px;
-    font-size: 13px;
-  }
-
-  /* --- CONTENT SECTION: 3 kolom → 1 kolom --- */
+  /* --- CONTENT SECTION: dari 3 kolom → 1 kolom --- */
   .content-section {
     width: 95%;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Semua jadi 1 kolom di HP */
     gap: 24px;
     margin: 20px auto;
   }
 
+  /* --- JUDUL SECTION --- */
   .content-section h2 {
-    font-size: 26px;
+    font-size: 24px;
     margin-bottom: 14px;
   }
 
+  /* --- LOKASI --- */
+  .lokasi {
+    width: 100%;
+  }
+
+  .map-card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .map-info {
+    margin-top: 12px;
+  }
+
   /* --- MENU BUTTONS --- */
+  .menu-list {
+    width: 100%;
+    gap: 12px;
+  }
+
   .menu-btn {
     font-size: 16px;
     padding: 14px 16px;
     border-radius: 14px;
+    display: block;
     width: 100%;
   }
 
   /* --- INFO CARDS --- */
+  .info-section {
+    width: 100%;
+    gap: 14px;
+  }
+
   .info-card {
     padding: 18px;
+    border-radius: 16px;
   }
 
   .info-card h3 {
@@ -857,5 +823,14 @@ body {
   .sosmed-section h2 {
     font-size: 20px;
     margin-bottom: 14px;
+  }
+
+  .sosmed-container {
+    gap: 16px;
+  }
+
+  .sosmed-circle {
+    width: 50px;
+    height: 50px;
   }
 }
